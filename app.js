@@ -55,7 +55,7 @@
       case 'tarjetas': return '<div class="tarjetas">' + b.items.map(function (i) { return '<article class="tarjeta"><div class="tarjeta__cab"><h3>' + i.k + '</h3>' + (i.tag ? '<span class="chip chip--marca">' + i.tag + '</span>' : '') + '</div><p>' + i.x + '</p></article>'; }).join('') + '</div>';
       case 'linea': return '<ol class="linea">' + b.items.map(function (i) { return '<li><small>' + i.n + '</small><b>' + i.t + '</b><span>' + i.x + '</span></li>'; }).join('') + '</ol>';
       case 'antes': return '<div class="antes">' + b.items.map(function (i) { return '<button type="button" class="giro" aria-pressed="false"><span class="giro__in"><span class="giro__cara giro__cara--a"><small>Antes</small><b>' + i.t + '</b><span>' + i.antes + '</span><span class="giro__pista">Pulsa para ver el después →</span></span><span class="giro__cara giro__cara--b"><small>Ahora</small><b>' + i.t + '</b><span>' + i.despues + '</span><span class="giro__pista">← Volver</span></span></span></button>'; }).join('') + '</div>';
-      case 'mapa': return '<ol class="mapa">' + S.map(function (s) { return '<li><a href="#/' + s.id + '"><img src="assets/img/' + s.img + '-m.webp" alt="" width="800" height="452" loading="lazy"><b>' + s.n + ' · ' + s.t + '</b><span>' + s.x + '</span></a></li>'; }).join('') + '</ol>';
+      case 'mapa': return '<ol class="mapa">' + S.map(function (s) { return '<li><a href="#/' + s.id + '"><img src="assets/img/' + (imp ? 'imp/' + s.img + '.jpg' : s.img + '-m.webp') + '" alt="" width="800" height="452" loading="lazy"><b>' + s.n + ' · ' + s.t + '</b><span>' + s.x + '</span></a></li>'; }).join('') + '</ol>';
       case 'prompts': return '<div class="prompts">' + b.items.map(function (p) { return '<article class="prompt"><div class="prompt__cab"><h3>' + p.t + '</h3><span class="chip chip--claude">' + p.tag + '</span></div><p class="prompt__texto">' + esc(p.p) + '</p>' + (p.r ? '<p class="prompt__res"><b>Qué salió:</b> ' + p.r + '</p>' : '') + '<button type="button" class="copiar" data-copiar="' + esc(p.p) + '">' + ICO.copiar + 'Copiar el prompt</button></article>'; }).join('') + '</div>';
       case 'interactivo': return imp ? (b.fallback || []).map(function (x) { return bloque(x, imp); }).join('') + (b.id === 'checklist' ? checklistTexto() : '') + (b.id === 'test' ? testTexto() : '') : '<div class="herramienta" data-herramienta="' + b.id + '">' + (H[b.id] ? H[b.id].html() : '') + '</div>';
       default: return '';
@@ -248,14 +248,14 @@
   // ------------------------------------------------------------ escenas
   function cabecera(s, i, imp) {
     var medio = imp || reduce
-      ? '<figure class="medio"><img src="assets/img/' + s.img + (imp ? '-m' : '') + '.webp" alt="" width="1600" height="905"></figure>'
+      ? '<figure class="medio"><img src="assets/img/' + (imp ? 'imp/' + s.img + '.jpg' : s.img + '.webp') + '" alt="" width="1600" height="905"></figure>'
       : '<figure class="medio"><video src="assets/video/' + s.video + '.mp4" poster="assets/img/' + s.img + '.webp" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video></figure>';
     return '<header class="cabecera"><div class="cabecera__texto"><p class="kicker">' + s.n + ' · Sección</p><h1 id="t-' + s.id + '">' + s.t + '</h1><p>' + s.x + '</p>' +
       '<div class="cabecera__acc"><a class="btn" href="' + pdfDe(s.id) + '" download>' + ICO.bajar + 'PDF de la sección</a><button type="button" class="btn btn--claro" data-enlace="' + s.id + '">' + ICO.enlace + 'Copiar enlace</button></div></div>' + medio + '</header>';
   }
   function portada(s, imp) {
     if (imp) return '<div class="portada-imp"><div class="portada-imp__texto"><p class="kicker">Formación Claude · Grupo Mutua · ' + M.fecha + '</p><h1 id="t-inicio">Claude no es otro chat. Es una <em>plantilla de doctorandos</em> trabajando para ti.</h1><p class="portada__sub">Lo que vimos en la formación de ' + M.formadores + ': las piezas, los prompts reales y cómo empezar mañana.</p>' + alianza() + '</div>' +
-      '<div class="portada-imp__img"><img src="assets/img/inicio-m.webp" alt="" width="800" height="452"><img class="pi-sujeto" src="assets/img/portada-sujeto.webp" alt="" width="1300" height="863"></div></div>';
+      '<div class="portada-imp__img"><img src="assets/img/imp/portada.jpg" alt="" width="1100" height="622"></div></div>';
     var fondo = imp || reduce ? '<img class="portada__fondo" src="assets/img/inicio.webp" alt="" width="1600" height="905">' : '<video class="portada__fondo" src="assets/video/inicio.mp4" poster="assets/img/inicio.webp" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>';
     return '<div class="portada" data-capas>' + fondo +
       '<img class="capa capa--sujeto" data-prof="22" src="assets/img/portada-sujeto.webp" alt="" width="1300" height="863">' +
@@ -283,11 +283,18 @@
   function descargas() {
     var tam = window.TAMANOS || {};
     function t(f) { return tam[f] ? ' · ' + tam[f] : ''; }
-    return '<section class="escena" aria-labelledby="t-desc"><header class="cabecera"><div class="cabecera__texto"><p class="kicker">Descargas</p><h1 id="t-desc">Llévatelo</h1><p>La formación en diapositivas, todo el resumen en PDF y en Word, la chuleta de prompts y cada sección en su propio PDF.</p></div><figure class="medio"><img src="assets/img/correo.webp" alt="" width="1600" height="905"></figure></header>' +
+    // Bloque de una presentación: texto, botones de PDF y PowerPoint y cuatro miniaturas
+    function presentacion(id, kicker, titulo, texto, archivo, pdfPrimero) {
+      var pdf = '<a class="btn' + (pdfPrimero ? '' : ' btn--claro') + '" href="descargas/' + archivo + '.pdf" download>' + ICO.bajar + 'PDF' + t(archivo + '.pdf') + '</a>';
+      var ppt = '<a class="btn' + (pdfPrimero ? ' btn--claro' : '') + '" href="descargas/' + archivo + '.pptx" download>' + ICO.bajar + 'PowerPoint' + t(archivo + '.pptx') + '</a>';
+      return '<section class="presentacion presentacion--' + id + '" aria-labelledby="t-' + id + '"><div class="presentacion__texto"><p class="kicker">' + kicker + '</p><h2 id="t-' + id + '">' + titulo + '</h2><p>' + texto + '</p>' +
+        '<div class="presentacion__acc">' + (pdfPrimero ? pdf + ppt : ppt + pdf) + '</div></div>' +
+        '<div class="presentacion__mini" aria-hidden="true">' + [1, 2, 3, 4].map(function (n) { return '<img src="assets/img/' + (id === 'sesion' ? 'sesion-' : 'diapo-') + n + '.webp" alt="" width="640" height="360" loading="lazy">'; }).join('') + '</div></section>';
+    }
+    return '<section class="escena" aria-labelledby="t-desc"><header class="cabecera"><div class="cabecera__texto"><p class="kicker">Descargas</p><h1 id="t-desc">Llévatelo</h1><p>Las dos presentaciones (la que se proyectó en la sesión y la corporativa), todo el resumen en PDF y en Word, la chuleta de prompts y cada sección en su propio PDF.</p></div><figure class="medio"><img src="assets/img/correo.webp" alt="" width="1600" height="905"></figure></header>' +
       '<div class="cuerpo"><div class="descargas">' +
-      '<section class="presentacion" aria-labelledby="t-pres"><div class="presentacion__texto"><p class="kicker">Presentación · 50 diapositivas</p><h2 id="t-pres">La formación en diapositivas</h2><p>Toda la sesión, sección a sección, con los logos de las tres empresas. En PowerPoint para editarla o reutilizarla, y en PDF para abrirla en cualquier sitio o adjuntarla a un correo.</p>' +
-      '<div class="presentacion__acc"><a class="btn" href="descargas/Formacion-Claude-diapositivas.pptx" download>' + ICO.bajar + 'PowerPoint' + t('Formacion-Claude-diapositivas.pptx') + '</a><a class="btn btn--claro" href="descargas/Formacion-Claude-diapositivas.pdf" download>' + ICO.bajar + 'PDF' + t('Formacion-Claude-diapositivas.pdf') + '</a></div></div>' +
-      '<div class="presentacion__mini" aria-hidden="true">' + [1, 2, 3, 4].map(function (n) { return '<img src="assets/img/diapo-' + n + '.webp" alt="" width="640" height="360" loading="lazy">'; }).join('') + '</div></section>' +
+      presentacion('sesion', 'La que se vio en la sala · 34 diapositivas', 'La presentación de la sesión', '«Cómo trabajo con Claude», la presentación de Diego Renedo que se proyectó en la formación, tal cual. En PDF para verla en cualquier sitio y en PowerPoint para proyectarla o adjuntarla.', 'Formacion-Claude-presentacion-sesion', true) +
+      presentacion('corporativa', 'Versión corporativa · 50 diapositivas', 'El resumen, en diapositivas', 'Toda la formación ordenada sección a sección, con los colores y los logos de Reynasa, Aurgi y Mutua. En PowerPoint editable para reutilizarla, y en PDF.', 'Formacion-Claude-presentacion-corporativa', false) +
       '<div class="descargas__top">' +
       '<a class="descarga" href="descargas/Formacion-Claude-completa.pdf" download><b>PDF completo</b><span>Las 11 secciones' + t('Formacion-Claude-completa.pdf') + '</span></a>' +
       '<a class="descarga" href="descargas/Formacion-Claude-completa.docx" download><b>Word completo</b><span>Para editarlo y reutilizarlo' + t('Formacion-Claude-completa.docx') + '</span></a>' +

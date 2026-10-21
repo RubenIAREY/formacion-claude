@@ -311,6 +311,9 @@ a, button, summary, label, select { touch-action: manipulation; }
 .presentacion__texto p:not(.kicker) { color: var(--suave); }
 .presentacion__acc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .3rem; }
 .presentacion__mini { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.presentacion--sesion { background: #1f2024; color: #f4f1ea; }
+.presentacion--sesion .kicker { color: #e9a184; }
+.presentacion--sesion .presentacion__texto p:not(.kicker) { color: #cfc9be; }
 .presentacion__mini img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 8px 22px -10px rgba(17, 20, 24, .35); }
 @media (max-width: 860px) { .presentacion { grid-template-columns: 1fr; padding: 1.1rem; } }
 .lista-pdf { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr)); gap: 8px; }
@@ -385,6 +388,5 @@ a, button, summary, label, select { touch-action: manipulation; }
   .portada-imp__texto h1 em { font-style: normal; color: var(--marca); }
   .portada-imp__img { position: relative; height: 112mm; border-radius: 6mm; overflow: hidden; }
   .portada-imp__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .portada-imp__img .pi-sujeto { inset: auto 3% -3% auto; width: 62%; height: auto; object-fit: contain; }
   a { color: inherit; text-decoration: none; }
 }

@@ -57,7 +57,7 @@
               { k: 'Formato', x: 'Ideas, demos en directo y resultados ya preparados, con preguntas abiertas toda la mañana.' },
               { k: 'Esta web', x: 'Arriba tienes las secciones. Con el botón <b>Colores</b> la ves con los colores de Reynasa, Aurgi o Mutua. En <b>Descargas</b>, todo en PDF, Word y PowerPoint.' },
             ] },
-            { t: 'nota', x: 'Diego prometió pasar su presentación, y Rubén ofreció la transcripción completa de la sesión a quien se la pida.' },
+            { t: 'nota', x: 'La presentación que proyectó Diego está en Descargas, en PDF y PowerPoint. Rubén ofreció además la transcripción completa de la sesión a quien se la pida.' },
           ] },
         ],
       },
