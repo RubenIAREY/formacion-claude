@@ -55,7 +55,7 @@
               { k: 'Formadores', x: '<b>Diego Renedo</b> (Aurgi) llevó la presentación y casi todas las demos. <b>Rubén López</b> (Reynasa) aportó sus casos: vídeo automatizado, agentes por correo, Plaud y la evolución de los modelos.' },
               { k: 'Para quién', x: 'Un equipo de Grupo Mutua, en la sala y por Teams.' },
               { k: 'Formato', x: 'Ideas, demos en directo y resultados ya preparados, con preguntas abiertas toda la mañana.' },
-              { k: 'Esta web', x: 'Arriba tienes las secciones. Con el botón <b>Colores</b> la ves con los colores de Reynasa, Aurgi o Mutua. En <b>Descargas</b>, todo en PDF y Word.' },
+              { k: 'Esta web', x: 'Arriba tienes las secciones. Con el botón <b>Colores</b> la ves con los colores de Reynasa, Aurgi o Mutua. En <b>Descargas</b>, todo en PDF, Word y PowerPoint.' },
             ] },
             { t: 'nota', x: 'Diego prometió pasar su presentación, y Rubén ofreció la transcripción completa de la sesión a quien se la pida.' },
           ] },

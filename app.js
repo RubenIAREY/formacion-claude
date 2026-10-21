@@ -283,8 +283,12 @@
   function descargas() {
     var tam = window.TAMANOS || {};
     function t(f) { return tam[f] ? ' · ' + tam[f] : ''; }
-    return '<section class="escena" aria-labelledby="t-desc"><header class="cabecera"><div class="cabecera__texto"><p class="kicker">Descargas</p><h1 id="t-desc">Llévatelo</h1><p>Todo el resumen en PDF y en Word, la chuleta de prompts en una página y cada sección en su propio PDF.</p></div><figure class="medio"><img src="assets/img/correo.webp" alt="" width="1600" height="905"></figure></header>' +
-      '<div class="cuerpo"><div class="descargas"><div class="descargas__top">' +
+    return '<section class="escena" aria-labelledby="t-desc"><header class="cabecera"><div class="cabecera__texto"><p class="kicker">Descargas</p><h1 id="t-desc">Llévatelo</h1><p>La formación en diapositivas, todo el resumen en PDF y en Word, la chuleta de prompts y cada sección en su propio PDF.</p></div><figure class="medio"><img src="assets/img/correo.webp" alt="" width="1600" height="905"></figure></header>' +
+      '<div class="cuerpo"><div class="descargas">' +
+      '<section class="presentacion" aria-labelledby="t-pres"><div class="presentacion__texto"><p class="kicker">Presentación · 50 diapositivas</p><h2 id="t-pres">La formación en diapositivas</h2><p>Toda la sesión, sección a sección, con los logos de las tres empresas. En PowerPoint para editarla o reutilizarla, y en PDF para abrirla en cualquier sitio o adjuntarla a un correo.</p>' +
+      '<div class="presentacion__acc"><a class="btn" href="descargas/Formacion-Claude-diapositivas.pptx" download>' + ICO.bajar + 'PowerPoint' + t('Formacion-Claude-diapositivas.pptx') + '</a><a class="btn btn--claro" href="descargas/Formacion-Claude-diapositivas.pdf" download>' + ICO.bajar + 'PDF' + t('Formacion-Claude-diapositivas.pdf') + '</a></div></div>' +
+      '<div class="presentacion__mini" aria-hidden="true">' + [1, 2, 3, 4].map(function (n) { return '<img src="assets/img/diapo-' + n + '.webp" alt="" width="640" height="360" loading="lazy">'; }).join('') + '</div></section>' +
+      '<div class="descargas__top">' +
       '<a class="descarga" href="descargas/Formacion-Claude-completa.pdf" download><b>PDF completo</b><span>Las 11 secciones' + t('Formacion-Claude-completa.pdf') + '</span></a>' +
       '<a class="descarga" href="descargas/Formacion-Claude-completa.docx" download><b>Word completo</b><span>Para editarlo y reutilizarlo' + t('Formacion-Claude-completa.docx') + '</span></a>' +
       '<a class="descarga descarga--claro" href="descargas/Chuleta-de-prompts.pdf" download><b>Chuleta de prompts</b><span>Los prompts de la sesión, para tenerlos a mano' + t('Chuleta-de-prompts.pdf') + '</span></a></div>' +
