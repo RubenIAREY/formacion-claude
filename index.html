@@ -1,34 +1,63 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-tema="reynasa">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Formación Claude · Elige el prototipo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formación Claude · Reynasa × Aurgi × Grupo Mutua</title>
+<meta name="description" content="Resumen interactivo de la formación sobre Claude del 20 de octubre de 2026: las piezas, los prompts reales y cómo empezar.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="comun/img/claude-spark.svg">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap">
-<link rel="stylesheet" href="comun/escenas.css">
-<style>
-  body { display: grid; place-items: center; min-height: 100svh; padding: 24px var(--col); }
-  main { max-width: 900px; width: 100%; display: grid; gap: 1.6rem; }
-  h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
-  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .dos a { display: grid; gap: .5rem; padding: 1.4rem; border-radius: var(--radio); background: #fff; box-shadow: inset 0 0 0 1px var(--linea); color: var(--pizarra); text-decoration: none; transition: box-shadow 200ms var(--ease), transform 200ms var(--ease); }
-  .dos a:hover { box-shadow: inset 0 0 0 1.5px var(--azul); transform: translateY(-2px); }
-  .dos b { font: 500 1.8rem/1.1 var(--serif); }
-  .dos span { color: var(--suave); }
-  @media (max-width: 640px) { .dos { grid-template-columns: 1fr; } }
-</style>
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Formación Claude · Reynasa × Aurgi × Grupo Mutua">
+<meta property="og:description" content="Resumen interactivo de la formación sobre Claude del 20 de octubre de 2026.">
+<meta property="og:image" content="https://rubeniarey.github.io/formacion-claude/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logos/claude-spark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Newsreader:ital,opsz,wght@1,6..72,400..500&display=swap">
+<link rel="stylesheet" href="estilos.css">
+<script>
+  // Colores antes de pintar, para que no parpadee
+  (function () { try { var t = new URLSearchParams(location.search).get('tema') || localStorage.getItem('formacion-claude-tema'); if (t === 'aurgi' || t === 'mutua' || t === 'reynasa') document.documentElement.setAttribute('data-tema', t); } catch (e) {} })();
+</script>
 </head>
 <body>
-<main>
-  <p class="kicker">Formación Claude · Prototipos</p>
-  <h1>Dos formas de moverse por la misma web. Elige la que más te guste.</h1>
-  <div class="dos">
-    <a href="a/"><b>A · Pestañas</b><span>Una barra arriba con las 11 secciones. Pulsas una y cambia la pantalla entera; dentro, subpestañas.</span></a>
-    <a href="b/"><b>B · Mosaico</b><span>La portada es un panel de tarjetas. Cada sección se abre a pantalla completa y sus partes se despliegan de una en una.</span></a>
+<a class="saltar" href="#escenario">Saltar al contenido</a>
+<header class="barra">
+  <div class="barra__fila">
+    <a class="marcas" href="#/inicio" aria-label="Formación Claude: ir al inicio">
+      <img data-empresa="reynasa" class="l-reynasa" src="assets/logos/reynasa.png" alt="Reynasa Recambios" width="900" height="224">
+      <img data-empresa="aurgi" class="l-aurgi" src="assets/logos/aurgi.png" alt="Aurgi" width="700" height="222">
+      <img data-empresa="mutua" class="l-mutua" src="assets/logos/mutua.png" alt="Mutua Madrileña" width="900" height="148">
+      <span class="marcas__sep" aria-hidden="true"></span>
+      <img class="l-claude" src="assets/logos/claude.png" alt="Claude" width="700" height="153">
+    </a>
+    <div class="barra__acc">
+      <div class="colores">
+        <button type="button" class="btn btn--claro" data-colores aria-expanded="false" aria-controls="panel-colores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0 0 22 9.8C22 5.5 17.5 2 12 2z"/></svg><span>Colores</span></button>
+        <div class="colores__panel" id="panel-colores" role="group" aria-label="Colores de la web" hidden>
+          <p>Ve la web con los colores de cada empresa.</p>
+          <button type="button" class="tema" data-tema="reynasa" aria-pressed="true"><span class="tema__muestra" aria-hidden="true"><i style="background:#004A98"></i><i style="background:#CE0E2D"></i><i style="background:#FFA400"></i></span>Reynasa<img src="assets/logos/reynasa.png" alt="" width="900" height="224"></button>
+          <button type="button" class="tema" data-tema="aurgi" aria-pressed="false"><span class="tema__muestra" aria-hidden="true"><i style="background:#333F48"></i><i style="background:#007D15"></i><i style="background:#38D430"></i></span>Aurgi<img src="assets/logos/aurgi.png" alt="" width="700" height="222"></button>
+          <button type="button" class="tema" data-tema="mutua" aria-pressed="false"><span class="tema__muestra" aria-hidden="true"><i style="background:#004b93"></i><i style="background:#0079b8"></i><i style="background:#009ee2"></i></span>Mutua<img src="assets/logos/mutua.png" alt="" width="900" height="148"></button>
+        </div>
+      </div>
+      <a class="btn" href="#/descargas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Descargas</span></a>
+    </div>
   </div>
-  <p class="nota">En los dos solo están completas la portada y «Pedir bien», con su constructor de prompts. El resto se monta con el formato que elijas.</p>
-</main>
+  <nav class="pestanas" aria-label="Secciones"><ol></ol></nav>
+  <div class="barra__progreso" aria-hidden="true"><i></i></div>
+</header>
+<main id="escenario" tabindex="-1"></main>
+<footer class="pie">
+  <div class="pie__in">
+    <div class="alianza"><span>Impartida por</span><img class="l-aurgi" src="assets/logos/aurgi.png" alt="Aurgi" width="700" height="222"><img class="l-reynasa" src="assets/logos/reynasa.png" alt="Reynasa Recambios" width="900" height="224"><i aria-hidden="true"></i><span>para</span><img class="l-mutua" src="assets/logos/mutua.png" alt="Mutua Madrileña" width="900" height="148"><i aria-hidden="true"></i><span>sobre</span><img class="l-claude" src="assets/logos/claude.png" alt="Claude" width="700" height="153"></div>
+    <p>Formación Claude · 20 de octubre de 2026 · Diego Renedo (Aurgi) y Rubén López (Reynasa). Resumen preparado por Reynasa a partir de la grabación de la sesión, sin nombres de asistentes ni datos internos.</p>
+    <p>Claude y Anthropic son marcas de Anthropic. Esta web no es una página oficial de Anthropic. Los datos marcados como «dichos en la sesión» no se han comprobado.</p>
+  </div>
+</footer>
+<script src="contenido.js"></script>
+<script src="descargas/tamanos.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
