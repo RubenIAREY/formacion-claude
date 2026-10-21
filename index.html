@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formación Claude · Elige el prototipo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="comun/img/claude-spark.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap">
+<link rel="stylesheet" href="comun/escenas.css">
+<style>
+  body { display: grid; place-items: center; min-height: 100svh; padding: 24px var(--col); }
+  main { max-width: 900px; width: 100%; display: grid; gap: 1.6rem; }
+  h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .dos a { display: grid; gap: .5rem; padding: 1.4rem; border-radius: var(--radio); background: #fff; box-shadow: inset 0 0 0 1px var(--linea); color: var(--pizarra); text-decoration: none; transition: box-shadow 200ms var(--ease), transform 200ms var(--ease); }
+  .dos a:hover { box-shadow: inset 0 0 0 1.5px var(--azul); transform: translateY(-2px); }
+  .dos b { font: 500 1.8rem/1.1 var(--serif); }
+  .dos span { color: var(--suave); }
+  @media (max-width: 640px) { .dos { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">Formación Claude · Prototipos</p>
+  <h1>Dos formas de moverse por la misma web. Elige la que más te guste.</h1>
+  <div class="dos">
+    <a href="a/"><b>A · Pestañas</b><span>Una barra arriba con las 11 secciones. Pulsas una y cambia la pantalla entera; dentro, subpestañas.</span></a>
+    <a href="b/"><b>B · Mosaico</b><span>La portada es un panel de tarjetas. Cada sección se abre a pantalla completa y sus partes se despliegan de una en una.</span></a>
+  </div>
+  <p class="nota">En los dos solo están completas la portada y «Pedir bien», con su constructor de prompts. El resto se monta con el formato que elijas.</p>
+</main>
+</body>
+</html>
