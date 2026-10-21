@@ -1,0 +1,6 @@
+# Formación Claude · Reynasa × Aurgi × Grupo Mutua
+
+> Resumen de la formación sobre Claude del 20 de octubre de 2026. La web es interactiva; el contenido completo en texto está en formacion.md.
+
+- [La formación completa, en texto](https://rubeniarey.github.io/formacion-claude/formacion.md)
+- [Descargas: presentación, PDF y Word](https://rubeniarey.github.io/formacion-claude/descargas/)

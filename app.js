@@ -291,7 +291,8 @@
       '<div class="descargas__top">' +
       '<a class="descarga" href="descargas/Formacion-Claude-completa.pdf" download><b>PDF completo</b><span>Las 11 secciones' + t('Formacion-Claude-completa.pdf') + '</span></a>' +
       '<a class="descarga" href="descargas/Formacion-Claude-completa.docx" download><b>Word completo</b><span>Para editarlo y reutilizarlo' + t('Formacion-Claude-completa.docx') + '</span></a>' +
-      '<a class="descarga descarga--claro" href="descargas/Chuleta-de-prompts.pdf" download><b>Chuleta de prompts</b><span>Los prompts de la sesión, para tenerlos a mano' + t('Chuleta-de-prompts.pdf') + '</span></a></div>' +
+      '<a class="descarga descarga--claro" href="descargas/Chuleta-de-prompts.pdf" download><b>Chuleta de prompts</b><span>Los prompts de la sesión, para tenerlos a mano' + t('Chuleta-de-prompts.pdf') + '</span></a>' +
+      '<a class="descarga descarga--claro" href="formacion.md"><b>Para tu Claude</b><span>Toda la formación en texto: pásale el enlace o súbelo a un proyecto «Formación»</span></a></div>' +
       '<h2 class="h">Cada sección, en su PDF</h2><ul class="lista-pdf">' + S.map(function (s) { var f = pdfDe(s.id); return '<li><a href="' + f + '" download><span>' + s.n + ' · ' + s.t + '</span><small>PDF' + t(f.replace('descargas/', '')) + '</small></a></li>'; }).join('') + '</ul>' +
       '<p class="nota">' + M.aviso + '</p></div></div></section>';
   }
